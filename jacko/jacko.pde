@@ -11,6 +11,8 @@ PImage background;
 PImage man;
 boolean is_on; 
 String irany;
+int meretx;
+int merety;
 //background(1200, 918);
 
 //image (man, 540, 550, 80, 161);
@@ -36,6 +38,8 @@ void setup() {
   sebx = 3;
   seby = -3;
   irany="jobbra";
+  meretx=80;
+  merety=161;
 }
 void mouseClicked() {
   clicked+=1;
@@ -45,7 +49,13 @@ void mouseClicked() {
    if (irany=="jobbra") {
       irany="balra";  
     }  
-    else{
+     else if (irany=="balra"){
+    irany="elore";
+    }
+     else if (irany=="elore"){
+    irany="hatra";
+    }
+     else if (irany=="hatra"){
     irany="jobbra";
     }
     // ha az irany jobbra, akkor jobbra mozgunk, egyebk balra
@@ -59,12 +69,20 @@ void draw() {
     if (irany=="jobbra") {
       x=x+1;  
     }  
-    else{
+    if (irany=="balra"){
     x=x-1;
+    }
+     if (irany=="elore"){
+    meretx+=1;
+    merety+=1;
+    }
+     if (irany=="hatra"){
+    meretx-=1;
+    merety-=1;
     }
     // ha az irany jobbra, akkor jobbra mozgunk, egyebk balra
   }
-  image(man, x, y, 80, 161);
+  image(man, x, y, meretx, merety);
   //x = x+sebx;
   //y = y+seby;
   //  image(man, mouseX, mouseY, 80, 161);
